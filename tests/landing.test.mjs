@@ -4,6 +4,7 @@ import test from 'node:test';
 
 const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const script = await readFile(new URL('../script.js', import.meta.url), 'utf8');
+const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
 
 const publicUrls = [
   'https://kilat-watsor.vercel.app/',
@@ -52,9 +53,11 @@ test('semua ikon memakai aset lokal yang tersedia untuk GitHub Pages', async () 
   }
 });
 
-test('SIMPEL memakai ikon dengan sambungan monogram yang sudah dikoreksi', () => {
-  assert.equal((index.match(/assets\/icons\/simpel-fixed\.png/g) ?? []).length, 2);
-  assert.doesNotMatch(index, /src="assets\/icons\/simpel\.png"/);
+test('KILAT dan SIMPEL memakai siluet resmi dengan kontras seperti program lain', () => {
+  assert.equal((index.match(/assets\/icons\/simpel\.png/g) ?? []).length, 2);
+  assert.doesNotMatch(index, /src="assets\/icons\/simpel-fixed\.png"/);
+  assert.match(styles, /\.card-kilat \.app-icon\s*\{[^}]*background:\s*var\(--accent\)/s);
+  assert.match(styles, /\.card-kilat \.app-icon img\s*\{[^}]*filter:\s*brightness\(0\) invert\(1\)/s);
 });
 
 test('identitas header dan footer memakai simbol KKN tanpa gambar bertulisan', async () => {
