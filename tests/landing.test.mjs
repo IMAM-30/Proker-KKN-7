@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
@@ -37,6 +37,18 @@ test('semua tautan aplikasi aman ketika membuka tab baru', () => {
     assert.match(link, /target="_blank"/);
     assert.match(link, /rel="noopener noreferrer"/);
     assert.match(link, /<img /);
+  }
+});
+
+test('semua ikon memakai aset lokal yang tersedia untuk GitHub Pages', async () => {
+  const iconSources = [...index.matchAll(/<img src="([^"]+)" alt="Ikon (?:Admin )?[^"].*?"/g)]
+    .map((match) => match[1]);
+
+  assert.equal(iconSources.length, 10);
+  assert.ok(iconSources.every((source) => source.startsWith('assets/icons/')));
+
+  for (const source of new Set(iconSources)) {
+    await access(new URL(`../${source}`, import.meta.url));
   }
 });
 
