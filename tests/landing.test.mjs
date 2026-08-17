@@ -52,6 +52,11 @@ test('semua ikon memakai aset lokal yang tersedia untuk GitHub Pages', async () 
   }
 });
 
+test('SIMPEL memakai ikon dengan sambungan monogram yang sudah dikoreksi', () => {
+  assert.equal((index.match(/assets\/icons\/simpel-fixed\.png/g) ?? []).length, 2);
+  assert.doesNotMatch(index, /src="assets\/icons\/simpel\.png"/);
+});
+
 test('pengendali tampilan mendukung hash layanan dan admin', () => {
   assert.match(script, /#admin/);
   assert.match(script, /history\.replaceState/);
