@@ -57,6 +57,12 @@ test('SIMPEL memakai ikon dengan sambungan monogram yang sudah dikoreksi', () =>
   assert.doesNotMatch(index, /src="assets\/icons\/simpel\.png"/);
 });
 
+test('identitas header dan footer memakai simbol KKN tanpa gambar bertulisan', async () => {
+  assert.equal((index.match(/assets\/icons\/kkn-symbol\.png/g) ?? []).length, 2);
+  assert.doesNotMatch(index, /src="logokkn\.png"/);
+  await access(new URL('../assets/icons/kkn-symbol.png', import.meta.url));
+});
+
 test('pengendali tampilan mendukung hash layanan dan admin', () => {
   assert.match(script, /#admin/);
   assert.match(script, /history\.replaceState/);
