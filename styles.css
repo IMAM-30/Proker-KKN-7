@@ -233,8 +233,8 @@ svg { display: block; }
 .card-arrow { position: absolute; right: 17px; bottom: 17px; display: grid; width: 27px; height: 27px; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--accent) 11%, var(--surface)); color: var(--accent); font-size: 15px; transition: 180ms ease; }
 .app-card:hover .card-arrow { background: var(--accent); color: #fff; transform: rotate(8deg); }
 .card-kilat { --accent: #285a4e; }
-.card-kilat .app-icon { background: var(--accent); border-color: color-mix(in srgb, #fff 28%, var(--accent)); }
-.card-kilat .app-icon img { padding: 9px; filter: brightness(0) invert(1); }
+.card-kilat .app-icon { background: #fff; border-color: color-mix(in srgb, var(--accent) 20%, #e7ebe8); box-shadow: 0 3px 0 rgba(19, 48, 38, .08); }
+.card-kilat .app-icon img { padding: 8px; filter: none; }
 .card-simpel { --accent: #178b7b; }
 .card-suara { --accent: #4475ba; }
 .card-pasti { --accent: #df704e; }

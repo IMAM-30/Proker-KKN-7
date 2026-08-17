@@ -53,11 +53,11 @@ test('semua ikon memakai aset lokal yang tersedia untuk GitHub Pages', async () 
   }
 });
 
-test('KILAT dan SIMPEL memakai siluet resmi dengan kontras seperti program lain', () => {
+test('KILAT memakai siluet hijau di kotak putih dan SIMPEL memakai siluet resmi', () => {
   assert.equal((index.match(/assets\/icons\/simpel\.png/g) ?? []).length, 2);
   assert.doesNotMatch(index, /src="assets\/icons\/simpel-fixed\.png"/);
-  assert.match(styles, /\.card-kilat \.app-icon\s*\{[^}]*background:\s*var\(--accent\)/s);
-  assert.match(styles, /\.card-kilat \.app-icon img\s*\{[^}]*filter:\s*brightness\(0\) invert\(1\)/s);
+  assert.match(styles, /\.card-kilat \.app-icon\s*\{[^}]*background:\s*#fff/s);
+  assert.match(styles, /\.card-kilat \.app-icon img\s*\{[^}]*filter:\s*none/s);
 });
 
 test('identitas header dan footer memakai simbol KKN tanpa gambar bertulisan', async () => {
