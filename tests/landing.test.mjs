@@ -31,6 +31,16 @@ test('memuat tepat lima layanan publik dan lima akses admin', () => {
   }
 });
 
+test('PASTI BISA dan PANTAS KEREN mengarah ke domain masing-masing', () => {
+  const cards = [...index.matchAll(/<a class="app-card[\s\S]*?<\/a>/g)].map((match) => match[0]);
+  const cardFor = (label) => cards.find((card) => card.includes(`<strong>${label}</strong>`));
+
+  assert.match(cardFor('PASTI BISA'), /href="https:\/\/pastibisa-watsor\.vercel\.app\/"/);
+  assert.match(cardFor('PANTAS KEREN'), /href="https:\/\/pantaskeren-watsor\.vercel\.app\/"/);
+  assert.match(cardFor('Admin PASTI BISA'), /href="https:\/\/pastibisa-watsor\.vercel\.app\/admin"/);
+  assert.match(cardFor('Admin PANTAS KEREN'), /href="https:\/\/pantaskeren-watsor\.vercel\.app\/admin"/);
+});
+
 test('semua tautan aplikasi aman ketika membuka tab baru', () => {
   const appLinks = [...index.matchAll(/<a class="app-card[\s\S]*?<\/a>/g)].map((match) => match[0]);
   assert.equal(appLinks.length, 10);
